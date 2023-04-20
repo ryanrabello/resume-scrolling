@@ -33,7 +33,6 @@ export const Plane = () => {
       mesh.current.material.uniforms.u_time.value = clock.getElapsedTime();
       mesh.current.material.uniforms.u_scroll.value = scroll.range(0, 1 / 8);
     }
-    window.mesh = mesh;
   });
   return (
     <>
