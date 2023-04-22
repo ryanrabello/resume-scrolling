@@ -1,19 +1,19 @@
-import styled, { x } from "@xstyled/styled-components";
+import styled, { ThemeProvider, th, x } from "@xstyled/styled-components";
 import { Canvas } from "@react-three/fiber";
 import { Scroll, ScrollControls } from "@react-three/drei";
 import { Plane } from "./Plane/Plane";
 import Balancer from "react-wrap-balancer";
 import { ComponentProps, FC } from "react";
+import { theme } from "./theme";
 
-const Section: FC<ComponentProps<typeof x.div>> = ({...props}) => (
+const Section: FC<ComponentProps<typeof x.div>> = ({ ...props }) => (
   <x.div
+    // Don't use margin here it breaks something with the absolute positioned items
     h={"100vh"}
     w={"100vw"}
-    // margin={{ _: "5px", md: "20px", xl: "30px" }}
-    m={5}
+    p={5}
     display={"flex"}
     justifyContent={"center"}
-    backgroundColor={{ hover: "red" }}
     {...props}
   />
 );
@@ -24,6 +24,8 @@ const HeaderContainer = styled.div<{ align?: string }>`
   display: flex;
   flex-direction: column;
   align-items: ${({ align }) => align || "start"};
+  text-shadow: -2px -2px 2px ${th.color("background")},
+    2px 2px 2px ${th.color("background")};
 `;
 
 const Heading = styled.h1`
@@ -51,7 +53,12 @@ const Paragraph = styled.p`
 function App() {
   return (
     <x.div h={"100vh"} w={"100%"}>
-      <Canvas color={"#FEFBF3"}>
+      <Canvas
+        color={"#FEFBF3"}
+        camera={{
+          fov: 20,
+        }}
+      >
         {/* <ambientLight color={'#CAA9C7'} /> */}
         {/* <directionalLight color={'#5562CB'} position={[0, 1, 0.25]} /> */}
         <ScrollControls pages={5} damping={0.1}>
@@ -62,49 +69,52 @@ function App() {
             {/*<Spheres/>*/}
           </Scroll>
           <Scroll html>
-            {/* WIP: Why doesn't this work ???? */}
-            <Section pt={{ lg: "40px" }}>
-              <HeaderContainer>
-                <SubHeading>Welcome To</SubHeading>
-                <Heading>Ryan Rabello</Heading>
-                <Paragraph>
-                  <Balancer>
-                    The software engineering product that will transform the way
-                    your company approaches technology. Our innovative software
-                    engineering solution is the epitome of luxury when it comes
-                    to designing and developing high-quality software.
-                  </Balancer>
-                </Paragraph>
-              </HeaderContainer>
-            </Section>
-            <Section>
-              <HeaderContainer align="end">
-                <SubHeading>Ryan Rabello and your buisness,</SubHeading>
-                <Heading>Perfectly in Sync</Heading>
-              </HeaderContainer>
-            </Section>
-            <Section>
-              <HeaderContainer>
-                <SubHeading>
-                  5-Year Legacy of Mastery with React and TypeScript
-                </SubHeading>
-                <Heading>Expertise Perfected</Heading>
-              </HeaderContainer>
-            </Section>
-            <Section>
-              <HeaderContainer>
-                <SubHeading>The Pinnacle of Software Engineering</SubHeading>
-                <Heading>Unmatched in Quality and Performance</Heading>
-              </HeaderContainer>
-            </Section>
-            <Section>
-              <HeaderContainer>
-                <SubHeading>
-                  Experience the Ultimate Luxury in Software Engineering
-                </SubHeading>
-                <Heading>Get Ryan Today</Heading>
-              </HeaderContainer>
-            </Section>
+            {/* Needed duplicate ThemeProvider for properly passing context through three fiber */}
+            <ThemeProvider theme={theme}>
+              <Section pt={{ md: 20, lg: 200 }}>
+                <HeaderContainer>
+                  <SubHeading>Welcome To</SubHeading>
+                  <Heading>Ryan Rabello</Heading>
+                  <Paragraph>
+                    <Balancer>
+                      The software engineering product that will transform the
+                      way your company approaches technology. Our innovative
+                      software engineering solution is the epitome of luxury
+                      when it comes to designing and developing high-quality
+                      software.
+                    </Balancer>
+                  </Paragraph>
+                </HeaderContainer>
+              </Section>
+              <Section>
+                <HeaderContainer align="end">
+                  <SubHeading>Ryan Rabello and your buisness,</SubHeading>
+                  <Heading>Perfectly in Sync</Heading>
+                </HeaderContainer>
+              </Section>
+              <Section>
+                <HeaderContainer>
+                  <SubHeading>
+                    5-Year Legacy of Mastery with React and TypeScript
+                  </SubHeading>
+                  <Heading>Expertise Perfected</Heading>
+                </HeaderContainer>
+              </Section>
+              <Section>
+                <HeaderContainer>
+                  <SubHeading>The Pinnacle of Software Engineering</SubHeading>
+                  <Heading>Unmatched in Quality and Performance</Heading>
+                </HeaderContainer>
+              </Section>
+              <Section>
+                <HeaderContainer>
+                  <SubHeading>
+                    Experience the Ultimate Luxury in Software Engineering
+                  </SubHeading>
+                  <Heading>Get Ryan Today</Heading>
+                </HeaderContainer>
+              </Section>
+            </ThemeProvider>
           </Scroll>
         </ScrollControls>
       </Canvas>

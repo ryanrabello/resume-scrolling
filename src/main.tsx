@@ -1,23 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
-import { Preflight, defaultTheme, ThemeProvider, createGlobalStyle } from "@xstyled/styled-components";
+import { Preflight, ThemeProvider, createGlobalStyle } from "@xstyled/styled-components";
+import { theme } from "./theme";
 
-const theme = {
-  ...defaultTheme,
-  // Customize your theme here
-  fonts: {
-    body: `'Inter', sans-serif`,
-    heading: "Cormorant Garamond",
-  },
-  defaultColorModeName: "dark",
-};
-
-console.log(theme);
 
 const GlobalStyle = createGlobalStyle`  
   html, body {
-    background-color: #282828;
+    background-color: background;
     color: rgba(255, 255, 255, 0.87);
     font-family: body;
   }
