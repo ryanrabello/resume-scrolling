@@ -33,8 +33,8 @@ export const Plane = () => {
     <>
       <mesh
         ref={mesh}
-        scale={4}
-        position={[1, 0, 0]}
+        scale={13}
+        position={[3, 0, 0]}
       >
         <planeGeometry args={[1, 1, 64, 64]} />
         <shaderMaterial

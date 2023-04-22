@@ -8,7 +8,7 @@ import { theme } from "./theme";
 const GlobalStyle = createGlobalStyle`  
   html, body {
     background-color: background;
-    color: rgba(255, 255, 255, 0.87);
+    color: primary;
     font-family: body;
   }
 `;

@@ -22,7 +22,7 @@ void main() {
   float distance = distance(center, uv);
 
   float normalized_distance = getNormalizedDistance(uv, distance);
-  positionModified.z += sin((normalized_distance * .6 + t) * 6.0) * .2 * normalized_distance * smoothstep(0.0, 1.0, u_time / 5.0);
+  positionModified.z += sin((normalized_distance * .6 + t) * 6.0) * .2 * normalized_distance * smoothstep(0.0, 1.0, u_time / 5.0) * .5;
   vZ = positionModified.z;
   
   vec4 modelPosition = modelMatrix * vec4(positionModified, 1.0);

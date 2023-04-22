@@ -1,10 +1,11 @@
 import styled, { ThemeProvider, th, x } from "@xstyled/styled-components";
 import { Canvas } from "@react-three/fiber";
-import { Scroll, ScrollControls } from "@react-three/drei";
-import { Plane } from "./Plane/Plane";
+import { OrbitControls, Scroll, ScrollControls } from "@react-three/drei";
+import { Plane } from "./components/Plane/Plane";
 import Balancer from "react-wrap-balancer";
 import { ComponentProps, FC } from "react";
 import { theme } from "./theme";
+import { Spinner } from "./components/Spinner/Spinner";
 
 const Section: FC<ComponentProps<typeof x.div>> = ({ ...props }) => (
   <x.div
@@ -42,31 +43,46 @@ const SubHeading = styled.h2`
   font-weight: thin;
 `;
 
-const Paragraph = styled.p`
-  font-size: 1rem;
-  font-family: "Inter";
-  font-weight: normal;
-  line-height: 1.5;
-  max-width: 500px;
-`;
+// const Paragraph = styled.p`
+//   font-size: 1rem;
+//   font-family: "Inter";
+//   font-weight: normal;
+//   line-height: 1.5;
+//   max-width: 500px;
+// `;
+
+const Paragraph: FC<ComponentProps<typeof x.div>> = ({
+  children,
+  ...props
+}) => {
+  return (
+    <x.div
+      fontSize="1rem"
+      fontFamily="Inter"
+      fontWeight="normal"
+      lineHeight={1.5}
+      maxWidth={500}
+      {...props}
+    >
+      <Balancer>{children}</Balancer>
+    </x.div>
+  );
+};
 
 function App() {
   return (
     <x.div h={"100vh"} w={"100%"}>
-      <Canvas
-        color={"#FEFBF3"}
-        camera={{
-          fov: 20,
-        }}
-      >
+      <Canvas color={"#FEFBF3"}>
         {/* <ambientLight color={'#CAA9C7'} /> */}
-        {/* <directionalLight color={'#5562CB'} position={[0, 1, 0.25]} /> */}
+        <directionalLight
+          color={th.color("primary")}
+          position={[0, 1, 0.25]}
+          intensity={1}
+        />
         <ScrollControls pages={5} damping={0.1}>
           <Scroll>
             <Plane />
-            {/*<LavaLamp/>*/}
-            {/*<Ripple />*/}
-            {/*<Spheres/>*/}
+            <Spinner position={[0, -8, 0]} />
           </Scroll>
           <Scroll html>
             {/* Needed duplicate ThemeProvider for properly passing context through three fiber */}
@@ -76,13 +92,10 @@ function App() {
                   <SubHeading>Welcome To</SubHeading>
                   <Heading>Ryan Rabello</Heading>
                   <Paragraph>
-                    <Balancer>
-                      The software engineering product that will transform the
-                      way your company approaches technology. Our innovative
-                      software engineering solution is the epitome of luxury
-                      when it comes to designing and developing high-quality
-                      software.
-                    </Balancer>
+                    The software engineering product that will transform the way
+                    your company approaches technology. Our innovative software
+                    engineering solution is the epitome of luxury when it comes
+                    to designing and developing high-quality software.
                   </Paragraph>
                 </HeaderContainer>
               </Section>
@@ -90,6 +103,15 @@ function App() {
                 <HeaderContainer align="end">
                   <SubHeading>Ryan Rabello and your buisness,</SubHeading>
                   <Heading>Perfectly in Sync</Heading>
+                  <Paragraph>
+                    At Ryan Rabello, we believe that software should work
+                    seamlessly with your business. That's why our product is
+                    designed to collaborate with your team in the most effective
+                    way possible. Whether you're a small start-up or a large
+                    corporation, Ryan Rabello will integrate perfectly into your
+                    workflow, making your business run like a well-oiled
+                    machine.
+                  </Paragraph>
                 </HeaderContainer>
               </Section>
               <Section>
@@ -98,12 +120,28 @@ function App() {
                     5-Year Legacy of Mastery with React and TypeScript
                   </SubHeading>
                   <Heading>Expertise Perfected</Heading>
+                  <Paragraph>
+                    Ryan Rabello is the product of years of experience and
+                    expertise in the software engineering field. We have spent
+                    over 5 years perfecting our craft, and our expertise in
+                    React and TypeScript is unparalleled. With Ryan Rabello, you
+                    can be sure that you're getting the best possible product on
+                    the market.
+                  </Paragraph>
                 </HeaderContainer>
               </Section>
               <Section>
                 <HeaderContainer>
                   <SubHeading>The Pinnacle of Software Engineering</SubHeading>
                   <Heading>Unmatched in Quality and Performance</Heading>
+                  <Paragraph>
+                    Ryan Rabello is the product of years of experience and
+                    expertise in the software engineering field. We have spent
+                    over 5 years perfecting our craft, and our expertise in
+                    React and TypeScript is unparalleled. With Ryan Rabello, you
+                    can be sure that you're getting the best possible product on
+                    the market.
+                  </Paragraph>
                 </HeaderContainer>
               </Section>
               <Section>
@@ -112,6 +150,14 @@ function App() {
                     Experience the Ultimate Luxury in Software Engineering
                   </SubHeading>
                   <Heading>Get Ryan Today</Heading>
+                  <Paragraph>
+                    Ready to experience the luxury and functionality of Ryan
+                    Rabello? It's easy - simply click the button below to get
+                    started. Our team is standing by to help you integrate Ryan
+                    Rabello into your business and take your operations to new
+                    heights. Don't wait - get Ryan Rabello today and experience
+                    the difference for yourself!
+                  </Paragraph>
                 </HeaderContainer>
               </Section>
             </ThemeProvider>

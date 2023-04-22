@@ -10,6 +10,7 @@ export const theme = {
   colors: {
     ...defaultTheme.colors,
     background: '#282828',
+    primary: 'rgba(255, 255, 255, 0.87)',
   },
   defaultColorModeName: "dark",
 };
