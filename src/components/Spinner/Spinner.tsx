@@ -1,6 +1,6 @@
 import { th } from "@xstyled/styled-components";
 import { Box, Float, useScroll } from "@react-three/drei";
-import { Group, Object3D } from "three";
+import { Group, Object3D, OctahedronGeometry } from "three";
 import { FC, useRef } from "react";
 import { MeshProps, ThreeElements, useFrame } from "@react-three/fiber";
 import { degToRad } from "three/src/math/MathUtils";

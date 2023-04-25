@@ -1,11 +1,14 @@
 import styled, { ThemeProvider, th, x } from "@xstyled/styled-components";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Scroll, ScrollControls } from "@react-three/drei";
+import { Scroll, ScrollControls } from "@react-three/drei";
 import { Plane } from "./components/Plane/Plane";
 import Balancer from "react-wrap-balancer";
 import { ComponentProps, FC } from "react";
 import { theme } from "./theme";
 import { Spinner } from "./components/Spinner/Spinner";
+import { ResumeTimeline } from "./components/ResumeTimeline";
+import { ExperienceCard } from "./components/ExperienceCard";
+import { companies } from "./data/companies";
 
 const Section: FC<ComponentProps<typeof x.div>> = ({ ...props }) => (
   <x.div
@@ -83,6 +86,7 @@ function App() {
           <Scroll>
             <Plane />
             <Spinner position={[0, -8, 0]} />
+            {/* <ResumeTimeline /> */}
           </Scroll>
           <Scroll html>
             {/* Needed duplicate ThemeProvider for properly passing context through three fiber */}
@@ -128,6 +132,11 @@ function App() {
                     can be sure that you're getting the best possible product on
                     the market.
                   </Paragraph>
+                  <x.div p={"20px 0"}>
+                    <ExperienceCard company={companies[0]} />
+                    <ExperienceCard company={companies[1]} isLeft />
+                    <ExperienceCard company={companies[2]} />
+                  </x.div>
                 </HeaderContainer>
               </Section>
               <Section>
@@ -135,12 +144,13 @@ function App() {
                   <SubHeading>The Pinnacle of Software Engineering</SubHeading>
                   <Heading>Unmatched in Quality and Performance</Heading>
                   <Paragraph>
-                    Ryan Rabello is the product of years of experience and
-                    expertise in the software engineering field. We have spent
-                    over 5 years perfecting our craft, and our expertise in
-                    React and TypeScript is unparalleled. With Ryan Rabello, you
-                    can be sure that you're getting the best possible product on
-                    the market.
+                    At Ryan Rabello, we don't believe in settling for second
+                    best. That's why our product is simply better than the
+                    competition. From our state-of-the-art technology to our
+                    world-class customer support, we go above and beyond to
+                    ensure that our customers have the best possible experience.
+                    Choose Ryan Rabello for a software engineering product that
+                    truly stands out from the crowd.
                   </Paragraph>
                 </HeaderContainer>
               </Section>
