@@ -1,8 +1,8 @@
 import { th } from "@xstyled/styled-components";
-import { Box, Float, useScroll } from "@react-three/drei";
-import { Group, Object3D, OctahedronGeometry } from "three";
+import { Float, useScroll } from "@react-three/drei";
+import { Group } from "three";
 import { FC, useRef } from "react";
-import { MeshProps, ThreeElements, useFrame } from "@react-three/fiber";
+import { MeshProps, useFrame } from "@react-three/fiber";
 import { degToRad } from "three/src/math/MathUtils";
 import { UserIcon3D } from "./UserIcon3D";
 
@@ -27,6 +27,7 @@ export const Spinner: FC<{ position: Position }> = ({ position }) => {
 
   const x = Math.cos(degToRad(120)) * R;
   const y = Math.sin(degToRad(120)) * R;
+
   return (
     <>
       <group ref={ref} position={position}>

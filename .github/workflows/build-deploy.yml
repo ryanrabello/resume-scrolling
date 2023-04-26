@@ -1,9 +1,10 @@
 # Setup
-# 1. Create a .github\workflows\build-deploy.yml file
-# 2. Copy the contents of this file into it
-# 3. Change '<PUBLIC_URL>' in the build step to match your repository name (in most cases)
+# 1. Make sure your repository is public and the GH pages source is set to "Github Actions"
+# 2. Create a .github\workflows\build-deploy.yml file
+# 3. Copy the contents of this file into it
+# 4. Change '<PUBLIC_URL>' in the build step to match your repository name (in most cases)
 
-# Simple workflow for deploying static content to GitHub Pages
+# Simple workflow for deploying static content to GitHub Pages 
 name: Build and deploy vite to GH Pages
 
 on:

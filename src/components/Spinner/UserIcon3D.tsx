@@ -12,13 +12,15 @@ import { useGLTF } from "@react-three/drei";
 import { GroupProps } from "@react-three/fiber";
 import { Group } from "three";
 
+const glbUrl = `${import.meta.env.BASE_URL}user_3d_icon/scene-transformed.glb`;
+
 export const UserIcon3D = forwardRef<Group, GroupProps>(function UserIcon3D(
   props,
   ref
 ) {
-  // TODO: figure out why nodes is any / not defined 🤔
+  // TODO: figure out why nodes is (any / not defined) 🤔
   // @ts-ignore
-  const { nodes } = useGLTF("/user_3d_icon/scene-transformed.glb");
+  const { nodes } = useGLTF(glbUrl);
   return (
     <group ref={ref} {...props} dispose={null}>
       <mesh geometry={nodes.Object_2.geometry} rotation={[-Math.PI / 2, 0, 0]}>
@@ -28,4 +30,4 @@ export const UserIcon3D = forwardRef<Group, GroupProps>(function UserIcon3D(
   );
 });
 
-useGLTF.preload("/user_3d_icon/scene-transformed.glb");
+useGLTF.preload(glbUrl);
