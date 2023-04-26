@@ -16,6 +16,8 @@ export const UserIcon3D = forwardRef<Group, GroupProps>(function UserIcon3D(
   props,
   ref
 ) {
+  // TODO: figure out why nodes is any / not defined 🤔
+  // @ts-ignore
   const { nodes } = useGLTF("/user_3d_icon/scene-transformed.glb");
   return (
     <group ref={ref} {...props} dispose={null}>

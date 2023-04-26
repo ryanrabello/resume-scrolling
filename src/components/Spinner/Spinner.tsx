@@ -49,7 +49,7 @@ const Node: FC<{ position: Position }> = ({ position }) => (
   >
     <mesh scale={0.4} position={position}>
       <octahedronGeometry args={[1, 1]} />
-      <meshBasicMaterial color={th.color("primary")} wireframe />
+      <meshBasicMaterial color={`${th.color("primary")}`} wireframe />
       {/* <OrbitControls /> */}
     </mesh>
   </Float>

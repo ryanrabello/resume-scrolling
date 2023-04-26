@@ -78,7 +78,7 @@ function App() {
       <Canvas color={"#FEFBF3"}>
         {/* <ambientLight color={'#CAA9C7'} /> */}
         <directionalLight
-          color={th.color("primary")}
+          color={`${th.color("primary")}`}
           position={[0, 1, 0.25]}
           intensity={1}
         />

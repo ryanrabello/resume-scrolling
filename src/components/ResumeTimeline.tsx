@@ -33,7 +33,7 @@ const Node: FC<{ position: MeshProps["position"] }> = ({ position }) => {
   return (
     <mesh ref={meshRef} position={position} scale={0.2}>
       <icosahedronGeometry args={[1, 0]} />
-      <meshBasicMaterial color={th.color("primary")} wireframe />
+      <meshBasicMaterial color={`${th.color("primary")}`} wireframe />
     </mesh>
   );
 };
