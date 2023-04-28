@@ -12,6 +12,7 @@ import { useGLTF } from "@react-three/drei";
 import { GroupProps } from "@react-three/fiber";
 import { Group } from "three";
 
+// TODO: Optimize model (it's kinda big)
 const glbUrl = `${import.meta.env.BASE_URL}user_3d_icon/scene-transformed.glb`;
 
 export const UserIcon3D = forwardRef<Group, GroupProps>(function UserIcon3D(
