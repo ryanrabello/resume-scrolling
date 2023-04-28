@@ -13,7 +13,7 @@ import { companies } from "./data/companies";
 const Section: FC<ComponentProps<typeof x.div>> = ({ ...props }) => (
   <x.div
     // Don't use margin here it breaks something with the absolute positioned items
-    h={"100vh"}
+    minHeight={"100vh"}
     w={"100vw"}
     p={5}
     display={"flex"}
@@ -45,14 +45,6 @@ const SubHeading = styled.h2`
   font-family: "Inter";
   font-weight: thin;
 `;
-
-// const Paragraph = styled.p`
-//   font-size: 1rem;
-//   font-family: "Inter";
-//   font-weight: normal;
-//   line-height: 1.5;
-//   max-width: 500px;
-// `;
 
 const Paragraph: FC<ComponentProps<typeof x.div>> = ({
   children,
