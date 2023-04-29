@@ -9,6 +9,7 @@ import { Spinner } from "./components/Spinner/Spinner";
 import { ResumeTimeline } from "./components/ResumeTimeline";
 import { ExperienceCard } from "./components/ExperienceCard";
 import { companies } from "./data/companies";
+import { Skills } from "./components/Skills";
 
 const Section: FC<ComponentProps<typeof x.div>> = ({ ...props }) => (
   <x.div
@@ -78,6 +79,7 @@ function App() {
           <Scroll>
             <Plane />
             <Spinner position={[0, -8, 0]} />
+            <Skills />
             {/* <ResumeTimeline /> */}
           </Scroll>
           <Scroll html>
