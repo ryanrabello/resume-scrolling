@@ -1,6 +1,6 @@
-import { FC, useRef, useState } from "react";
+import { FC, useMemo, useRef, useState } from "react";
 import { th } from "@xstyled/styled-components";
-import { Text, useScroll } from "@react-three/drei";
+import { OrbitControls, Text, useScroll } from "@react-three/drei";
 import { MeshProps, useFrame } from "@react-three/fiber";
 import { BufferGeometry, Material, Mesh } from "three";
 
@@ -13,6 +13,7 @@ const skills = [
   "GraphQL",
   "Apollo",
   "Next.js",
+  "Three.js",
 ];
 
 const OFFSET = [-2, -2.5, 0];
@@ -23,14 +24,14 @@ const positions: [number, number, number][] = [];
 
 for (let i = 0; i < skills.length; i++) {
   const x = OFFSET[0] + (i % ROWS) * OFFSET_STEP[0];
-  const y = OFFSET[1] + Math.floor(i / ROWS) * OFFSET_STEP[1];
+  const y = OFFSET[1] + Math.floor(i / ROWS) * OFFSET_STEP[1] + x * 0.3;
   positions.push([x, y, 0]);
 }
 
 export const Skills: FC = () => {
   return (
     <>
-      <group position={[0, -25, 0]}>
+      <group position={[0, -23, 0]}>
         {positions.map((position, i) => (
           <Node key={i} position={position} text={skills[i]} />
         ))}
@@ -48,13 +49,21 @@ const Node: FC<{ position: MeshProps["position"]; text: string }> = ({
   // Rotate
   const meshRef = useRef<Mesh<BufferGeometry, Material>>(null);
 
-  const scroll = useScroll();
+  const direction = useMemo(() => {
+    const x = Math.random() * 2 - 1;
+    const y = Math.random() * 2 - 1;
+    const z = Math.random() * 2 - 1;
+    return [x, y, z];
+  }, []);
+
   useFrame((state) => {
     const mesh = meshRef.current;
     if (mesh) {
       const time = state.clock.getElapsedTime();
-      mesh.rotation.x = time / 20;
-      mesh.rotation.y = time / 10 + scroll.range(2 / 8, 5 / 8);
+      const speed = hovered ? .005 : .003;
+      mesh.rotation.x += direction[0] * speed;
+      mesh.rotation.y += direction[1] * speed;
+      mesh.rotation.z += direction[2] * speed;
     }
   });
 
@@ -67,13 +76,17 @@ const Node: FC<{ position: MeshProps["position"]; text: string }> = ({
         onPointerOver={() => setHover(true)}
         onPointerOut={() => setHover(false)}
       >
-        <octahedronGeometry args={[1, 1]} />
+        <icosahedronGeometry args={[1, 0]} />
         <meshToonMaterial
           color={`${th.color("primary")}`}
           wireframe={hovered}
         />
       </mesh>
-      <Text position={position} fontSize={0.2} color={"" + th.color("primary")}>
+      <Text
+        position={position}
+        fontSize={0.15}
+        color={"" + th.color("primary")}
+      >
         {text}
       </Text>
     </>
