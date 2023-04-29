@@ -80,6 +80,7 @@ function App() {
             <Plane />
             <Spinner position={[0, -8, 0]} />
             <Skills />
+            <
             {/* <ResumeTimeline /> */}
           </Scroll>
           <Scroll html>
